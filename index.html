@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>퀴즈</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 16px 48px;
+    background: #14131a; color: #ece9f0;
+    font: 16px/1.7 "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    max-width: 560px; margin-inline: auto;
+  }
+  h1 { font-size: 1.25rem; margin: 0 0 20px; color: #c7b6ff; }
+  p { margin: 0 0 14px; white-space: pre-wrap; }
+  img { width: 100%; border-radius: 12px; display: block; }
+  .card { background: #1e1c27; border-radius: 16px; padding: 20px 18px; margin-bottom: 20px; }
+  form { display: flex; gap: 8px; margin-top: 18px; }
+  input {
+    flex: 1; min-width: 0; padding: 14px; font-size: 18px; letter-spacing: 4px; text-align: center;
+    border: 2px solid #3a3550; border-radius: 12px; background: #14131a; color: inherit;
+  }
+  input:focus { outline: none; border-color: #8b6cf0; }
+  button {
+    padding: 14px 20px; font-size: 16px; font-weight: 700; border: 0; border-radius: 12px;
+    background: #8b6cf0; color: #fff; cursor: pointer;
+  }
+  .msg { min-height: 1.7em; margin-top: 10px; font-size: 14px; color: #ff8f9c; }
+  .done input, .done button { display: none; }
+  .done .msg { color: #7ee0a8; }
+  [hidden] { display: none !important; }
+
+  #intro { text-align: center; padding: 32px 18px; }
+  #intro h1 { font-size: 1.6rem; }
+  #intro button { width: 100%; margin-top: 22px; padding: 16px; font-size: 17px; }
+  .big { font-size: 2.6rem; margin: 0 0 8px; }
+
+  #gift img + img { margin-top: 14px; }
+  .confetti {
+    position: fixed; top: -12px; width: 9px; height: 14px; z-index: 9; pointer-events: none;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(102vh) rotate(720deg); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
+</style>
+</head>
+<body>
+
+<section class="card" id="closed" hidden style="text-align:center">
+  <p class="big">⏳</p>
+  <h1 id="closed-title"></h1>
+  <p id="closed-sub"></p>
+</section>
+
+<section class="card" id="intro" hidden>
+  <p class="big">🎁</p>
+  <h1>엄청난 선물이 기다리고 있어</h1>
+  <p>단, 그냥은 못 줘.
+아래 퀴즈 <b>2문제</b>를 전부 맞춰야 열려.</p>
+  <p>준비됐어?</p>
+  <button onclick="show('q1')">도전한다</button>
+</section>
+
+<section class="card" id="q1" hidden>
+  <h1>문제 1 · 비밀번호는?!</h1>
+  <p>내 조카 유치원생 엘리스의 비밀상자에는 대단한 비밀이 들어있는지 자물쇠가 걸려있다.
+조카에게 물어봐도 별거 아니라고 아무것도 아니라고 시큰둥하게 말하기는 하지만,
+그건 미스터리를 좋아하는 삼촌의 입장에서는 필히 구미가 당기는 호기심으로 다가왔다.</p>
+  <p>별거 아니라고는 하나 그 자물쇠는 본인이 엘리스의 비밀상자를 꼭꼭 잘 감추고 있다고
+자랑이라도 하듯이 " E L I S E " 라고 본인의 주인 이름을 당당하게 비추고 싶은건지,
+엘리스가 본인의 자물쇠이니 건들생각도 하지말라는 신신당부에서
+이름을 대문자로 꼭꼭 적어놓은건지,
+어떠한 상황이든간에 그 비밀상자의 내용물이 궁금해지는 건 피차 마찬가지 일터.</p>
+  <p>지금 엘리스가 상자를 두고 자리를 비운 지금!
+나는 빨리 엘리스의 상자를 열어보기로 마음먹었다.</p>
+  <p>자물쇠를 풀기위해선 열쇠가 아닌 숫자다이얼 자물쇠 이기에 충분히 시도해볼 가치가 있었다.
+나는 천천히 " E L I S E " 라고 적힌 자물쇠를 들여다보며
+내 조카가 어떤 다섯자리의 숫자들을 본인의 비밀상자의 경비원으로 임명했는지 고민하기 시작했다.</p>
+  <p>"유치원생의 입장으로 생각해보자고,,기껏해야 아는 숫자라곤 본인 생일이나 되려나..?"</p>
+  <p>지금 자물쇠의 비밀을 풀어내지 못하고 조카에게 비밀의 내용을 들어버린 지금에서야
+그때의 내 생각이 얼마나 복잡하고 단순했는지 나는 알지 못했다,</p>
+  <p><b>자 엘리스의 비밀번호는 무엇일까?</b></p>
+  <form data-hash="f1d2b4c2ca1e79c8333f5d73e5ded7de18b99840778ac1b4ed0af5177771a783" data-next="q2">
+    <input inputmode="numeric" autocomplete="off" placeholder="5자리" aria-label="1번 정답">
+    <button>확인</button>
+  </form>
+  <div class="msg"></div>
+</section>
+
+<section class="card" id="q2" hidden>
+  <h1>문제 2 · 비밀번호는?!</h1>
+  <img src="q2.png" alt="동물 9칸 격자 퀴즈">
+  <form data-hash="fa37cba3a692257766014bec08da160195e033f00110cb1f54361c8d2805649e" data-next="gift">
+    <input inputmode="numeric" autocomplete="off" placeholder="4자리" aria-label="2번 정답">
+    <button>확인</button>
+  </form>
+  <div class="msg"></div>
+</section>
+
+<section class="card" id="gift" hidden>
+  <p class="big">🎉</p>
+  <h1>축하해! 다 맞췄어</h1>
+  <img src="celebrate.jpg" alt="축하 사진" onerror="this.remove()">
+  <img src="gift.jpg" alt="선물 사진" onerror="this.replaceWith(Object.assign(document.createElement('p'),{textContent:'(사진 준비중 — gift.jpg / celebrate.jpg 를 올려주세요)'}))">
+</section>
+
+<script>
+// 공개 기간: 2026-09-23 07:00 ~ 18:00 (한국시간)
+const OPEN = Date.parse('2026-09-23T07:00:00+09:00');
+const CLOSE = Date.parse('2026-09-23T18:00:00+09:00');
+
+(function gate() {
+  const now = Date.now();
+  if (now >= OPEN && now < CLOSE) return document.getElementById('intro').hidden = false;
+  document.getElementById('closed').hidden = false;
+  const before = now < OPEN;
+  document.getElementById('closed-title').textContent = before ? '아직 시작 전이야' : '종료됐어';
+  document.getElementById('closed-sub').textContent = before
+    ? '9월 23일 오전 7시부터 열려. 그때 다시 와줘!'
+    : '9월 23일 오후 6시에 마감됐어. 다음 기회에!';
+})();
+
+function show(id) {
+  document.getElementById(id).hidden = false;
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('intro').hidden = true;
+}
+
+function confetti(n) {
+  const colors = ['#8b6cf0', '#ffd166', '#7ee0a8', '#ff8f9c', '#6cc5f0'];
+  for (let i = 0; i < n; i++) {
+    const c = document.body.appendChild(document.createElement('div'));
+    c.className = 'confetti';
+    c.style.cssText += `left:${Math.random() * 100}vw;background:${colors[i % colors.length]};
+      animation-duration:${1.8 + Math.random() * 1.6}s;animation-delay:${Math.random()}s`;
+    c.addEventListener('animationend', () => c.remove());
+  }
+}
+
+document.querySelectorAll('form').forEach(form => {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const input = form.querySelector('input'), msg = form.parentElement.querySelector('.msg');
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value.trim()));
+    const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    if (hex === form.dataset.hash) {
+      form.parentElement.classList.add('done');
+      msg.textContent = '정답! 🎉';
+      confetti(form.dataset.next === 'gift' ? 120 : 40);
+      show(form.dataset.next);
+    } else {
+      msg.textContent = '땡! 다시 생각해봐';
+      input.value = '';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
