@@ -124,7 +124,8 @@ const OPEN = Date.parse('2026-09-23T07:00:00+09:00');
 const CLOSE = Date.parse('2026-09-23T18:00:00+09:00');
 
 const pad = n => String(n).padStart(2, '0');
-const DEADLINE = new Date(CLOSE).toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul', hour: 'numeric', minute: '2-digit' });
+const kst = new Date(CLOSE + 9 * 3600e3), kh = kst.getUTCHours(), km = kst.getUTCMinutes();
+const DEADLINE = `${kh < 12 ? '오전' : '오후'} ${kh % 12 || 12}시${km ? ` ${km}분` : ''}`;
 
 function tick() {
   const left = CLOSE - Date.now();
